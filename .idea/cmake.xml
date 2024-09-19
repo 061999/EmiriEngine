@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSharedSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug-Visual Studio" ENABLED="true" GENERATION_DIR="build/vsDebug" CONFIG_NAME="Debug" TOOLCHAIN_NAME="Visual Studio" GENERATION_OPTIONS="-G Ninja -DGLFW_BUILD_DOCS:BOOL=OFF -DGLFW_INSTALL:BOOL=OFF -DMI_BUILD_OBJECT:BOOL=OFF -DMI_BUILD_SHARED:BOOL=OFF -DMI_BUILD_TESTS:BOOL=OFF" />
+      <configuration PROFILE_NAME="MinSizeRel-Visual Studio" ENABLED="true" GENERATION_DIR="build/vsMinSizeRel" CONFIG_NAME="MinSizeRel" TOOLCHAIN_NAME="Visual Studio" GENERATION_OPTIONS="-G Ninja -DGLFW_BUILD_DOCS:BOOL=OFF -DGLFW_INSTALL:BOOL=OFF -DMI_BUILD_OBJECT:BOOL=OFF -DMI_BUILD_SHARED:BOOL=OFF -DMI_BUILD_TESTS:BOOL=OFF" />
+    </configurations>
+  </component>
+</project>
