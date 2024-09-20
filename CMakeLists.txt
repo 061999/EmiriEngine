@@ -61,7 +61,12 @@ set(Emiri_Source
 add_executable(${CMAKE_PROJECT_NAME} ${Emiri_Source})
 
 #链接第三方库
-target_link_libraries(${CMAKE_PROJECT_NAME} "spdlog" "Vulkan::Headers" "nlohmann_json")
+target_link_libraries(${CMAKE_PROJECT_NAME}
+        "spdlog"
+        "Vulkan::Headers"
+        "nlohmann_json"
+        "freetype"
+)
 
 if (${USE_MIMALLOC})
     message("使用了mimalloc管理内存")
