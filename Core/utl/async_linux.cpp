@@ -59,9 +59,8 @@ namespace utl
 				}
 			}
 
-			return 0;
+			return nullptr;
 		}
-	private:
 
 	};
 
@@ -113,7 +112,8 @@ namespace utl
 
 	void task_pool::wait_for_down(uint32_t timerout)
 	{
-		std::array<pthread_t, UTL_THREAD_POOL_WORK_COUNT> waitables;
+
+		std::array<pthread_t, UTL_THREAD_POOL_WORK_COUNT> waitables{};
 		for (uint32_t i = 0; i < this->thread_count; i++)
 		{
 			waitables[i] = d->ctx[i].thread_handle;

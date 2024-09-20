@@ -34,18 +34,18 @@ namespace utl
 			std::ifstream cfg_file{ cfg_path.c_str() };
 			if (cfg_file.is_open())
 			{
-#ifdef _DEBUG
+#ifndef NDEBUG
 				try
 				{
-#endif // _DEBUG
+#endif // NDEBUG
 					cfg_file >> cfg;
-#ifdef _DEBUG
+#ifndef NDEBUG
 				}
 				catch (const std::exception&)
 				{
 					LOG_ERROR("Read Config File Error");
 				}
-#endif // _DEBUG
+#endif // NDEBUG
 			}
 		}
 
@@ -54,18 +54,18 @@ namespace utl
 			std::ofstream cfg_file{ this->cfg_path.c_str() };
 			if (cfg_file.is_open())
 			{
-#ifdef _DEBUG
+#ifndef NDEBUG
 				try
 				{
-#endif // _DEBUG
+#endif // NDEBUG
 					cfg_file << cfg;
-#ifdef _DEBUG
+#ifndef NDEBUG
 				}
 				catch (const std::exception&)
 				{
 					LOG_ERROR("Write Config File Error");
 				}
-#endif // _DEBUG
+#endif // NDEBUG
 			}
 		}
 

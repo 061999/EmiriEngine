@@ -8,7 +8,7 @@ namespace console_log
 	{
 	public:
 		cl():
-			log_ins{ "CL",std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>() }
+			log_ins{ "EmiriEngine",std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>() }
 		{
 #ifndef NDEBUG
 			log_ins.set_level(spdlog::level::trace);
@@ -34,4 +34,5 @@ namespace console_log
 	};
 
 	static cl register_cl{};
+
 }

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.5)
 
 project(EmiriEngine)
 
@@ -10,6 +10,7 @@ add_subdirectory("3rd/mimalloc")
 add_subdirectory("3rd/entt")
 add_subdirectory("3rd/VulkanHeaders")
 add_subdirectory("3rd/json")
+add_subdirectory("3rd/freetype")
 
 option(USE_MIMALLOC "是否使用mimalloc管理内存" ON)
 

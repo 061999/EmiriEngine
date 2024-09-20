@@ -1,5 +1,6 @@
 #pragma once
 #include "./deque.h"
+#include "./common.h"
 #include <condition_variable>
 
 #define UTL_THREAD_POOL_WORK_COUNT 16
@@ -52,7 +53,7 @@ namespace utl
 		~task_pool();
 		static task_pool& taskInstance();
 		static task_pool& serverInstance();
-		void wait_for_down(uint32_t timerout);//ms
+		void wait_for_down(u32 timerout);//ms
 		void start(task_base* task);
 
 	private:
