@@ -4,6 +4,7 @@
 
 #include "Core/utl/memory.h"
 #include <Core/logger/Logger.h>
+#include <Render/Vulkan/VkRenderContext.h>
 
 class my_class : public utl::task_base
 {
@@ -20,7 +21,6 @@ public:
 
 int main()
 {
-    utl::task_pool::serverInstance().start(utl::make_pointer<my_class>());
-    sleep(4);
+    auto isinit = Emiri::GetRC().is_init;
     return 0;
 }

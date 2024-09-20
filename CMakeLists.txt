@@ -11,6 +11,7 @@ add_subdirectory("3rd/entt")
 add_subdirectory("3rd/VulkanHeaders")
 add_subdirectory("3rd/json")
 add_subdirectory("3rd/freetype")
+add_subdirectory("3rd/glm")
 
 option(USE_MIMALLOC "是否使用mimalloc管理内存" ON)
 
@@ -32,6 +33,10 @@ set(Emiri_Header
         "Core/logger/Logger.h"
         #Core_config
         "Core/config/Config.h"
+        #Vulkan
+        "Render/Vulkan/vk_common.h"
+        "Render/Vulkan/helper.h"
+        "Render/Vulkan/VkRenderContext.h"
 )
 
 if (WIN32)
@@ -55,6 +60,8 @@ set(Emiri_Source
         "Core/logger/ConsoleLog.cpp"
         #Core_config
         "Core/config/ConfigImplJson.cpp"
+        #Vulkan
+        "Render/Vulkan/VkRenderContext.cpp"
 )
 
 #创建Emiri程序

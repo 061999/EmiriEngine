@@ -4,6 +4,8 @@
         "GLFW_BUILD_WAYLAND": false,
         "MI_BUILD_TESTS": false,
         "MI_BUILD_OBJECT": false,
-        "MI_BUILD_SHARED": false
+        "MI_BUILD_SHARED": false,
+        "GLM_ENABLE_SIMD_AVX2":true,
+        "GLM_ENABLE_CXX_17":true
     }
 }
