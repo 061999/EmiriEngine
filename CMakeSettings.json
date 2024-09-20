@@ -30,6 +30,16 @@
           "name": "MI_BUILD_SHARED",
           "value": "False",
           "type": "BOOL"
+        },
+        {
+          "name": "GLM_ENABLE_CXX_17",
+          "value": "True",
+          "type": "BOOL"
+        },
+        {
+          "name": "GLM_ENABLE_SIMD_AVX2",
+          "value": "True",
+          "type": "BOOL"
         }
       ]
     },
@@ -62,6 +72,16 @@
         {
           "name": "MI_BUILD_SHARED",
           "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "GLM_ENABLE_CXX_17",
+          "value": "True",
+          "type": "BOOL"
+        },
+        {
+          "name": "GLM_ENABLE_SIMD_AVX2",
+          "value": "True",
           "type": "BOOL"
         }
       ]

@@ -2,11 +2,15 @@
 #include <array>
 #include <Core/utl/common.h>
 
+#define WINDOWS_SURFACE "VK_KHR_win32_surface"
+
+#define LINUX_SURFACE "VK_KHR_xcb_surface"
+
 namespace Emiri
 {
     namespace vkx
     {
-        constexpr uint32_t vkx_version{ VK_MAKE_VERSION(0, 0, 1) };
+        constexpr u32 vkx_version{ VK_MAKE_VERSION(0, 0, 1) };
         constexpr auto vkx_name{ "vkx" };
 #ifdef NDEBUG
         constexpr std::array<const char *, 2> vkx_extensions{};
@@ -16,16 +20,23 @@ namespace Emiri
             VK_EXT_DEBUG_UTILS_EXTENSION_NAME,
             VK_EXT_DEBUG_REPORT_EXTENSION_NAME,
             VK_KHR_SURFACE_EXTENSION_NAME,
-            "VK_KHR_xcb_surface",
+#ifdef WIN32
+            WINDOWS_SURFACE,
+#elif LINUX
+  //          LINUX_SURFACE,
+#else
+#   error "Unsupported platform"
+#endif
         };
         constexpr std::array<const char *, 1> vkx_layers{
             "VK_LAYER_KHRONOS_validation"};
 
+#endif
         constexpr std::array<const char *, 1> vkx_device_extensions{
             VK_KHR_SWAPCHAIN_EXTENSION_NAME};
 
         constexpr std::array<const char *, 0> vkx_device_layers{};
-#endif
+
         struct instance_create_info : VkInstanceCreateInfo
         {
             VkInstanceCreateInfo *init()
@@ -57,7 +68,7 @@ namespace Emiri
         template <u32 family_count>
         struct device_create_info : VkDeviceCreateInfo
         {
-            void init_queue(u32 fam_index, u32 fam_id, float *priorites, size_t count)
+            void init_queue(u32 fam_index, u32 fam_id, float *priorites, u32 count)
             {
                 VkDeviceQueueCreateInfo &info{queue_create_infos[fam_index]};
                 info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
@@ -123,4 +134,4 @@ namespace Emiri
 
     } // namespace vkx
 
-} // namespace primal
+} // namespace Emiri
