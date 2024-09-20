@@ -1,0 +1,9 @@
+{
+    "cmake.configureSettings": {
+        "GLFW_BUILD_DOCS": false,
+        "GLFW_BUILD_WAYLAND": false,
+        "MI_BUILD_TESTS": false,
+        "MI_BUILD_OBJECT": false,
+        "MI_BUILD_SHARED": false
+    }
+}

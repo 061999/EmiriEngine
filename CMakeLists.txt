@@ -11,4 +11,4 @@ add_subdirectory("3rd/entt")
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} "EnTT")
+target_link_libraries(${CMAKE_PROJECT_NAME} "EnTT" "mimalloc-static")
