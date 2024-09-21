@@ -7,9 +7,18 @@
 #include <Core/logger/Logger.h>
 
 #include <Core/utl/vector.h>
+#include "VkSwapChain.h"
+#include <GLFW/glfw3.h>
 
 VkInstance Emiri::VkObject::vk_instance{};
-VkDevice Emiri::VkObject::vk_device;
+VkDevice Emiri::VkObject::vk_device{};
+VkQueue Emiri::VkObject::vk_direct_queue{};
+VkQueue Emiri::VkObject::vk_copy_queue{};
+
+static struct
+{
+    utl::vector<Emiri::VkSwapChain> swap_chains;
+}global{};
 
 const VkAllocationCallbacks *Emiri::GetVkAlloc()
 {
@@ -24,7 +33,7 @@ Emiri::VkRenderContext::VkRenderContext(): is_init{false}
         return;
     }
 
-#if 0
+#if 1
     //验证层检测
     u32 layerCount;
     vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
@@ -92,10 +101,7 @@ Emiri::VkRenderContext::VkRenderContext(): is_init{false}
         return;
     }
 
-    volkLoadDevice(vk_device);
-    
-    VkQueue que{};
-    vkGetDeviceQueue(vk_device, 0, 0, &que);
+    vkGetDeviceQueue(vk_device, 0, 0, &vk_direct_queue);
 
     is_init = true;
 }
@@ -103,6 +109,23 @@ Emiri::VkRenderContext::VkRenderContext(): is_init{false}
 Emiri::VkRenderContext::~VkRenderContext()
 {
     //vkDestroyInstance(vk_instance, GetVkAlloc());
+}
+
+Emiri::VkSwapChain * Emiri::VkRenderContext::CreateSwapchain(GLFWwindow *display)
+{
+    global.swap_chains.emplace_back();
+    VkSwapChain& sc = global.swap_chains.back();
+    if (VK_SUCCESS != glfwCreateWindowSurface(vk_instance,display,GetVkAlloc(),&sc.vk_surface_khr))
+    {
+        LOG_ERROR("Create Swapchain Error");
+        return nullptr;
+    }
+
+    VkSwapchainCreateInfoKHR swap_info{};
+
+    vkCreateSwapchainKHR(vk_device,&swap_info,GetVkAlloc(),&sc.vk_swap_chain_khr);
+
+    return &sc;
 }
 
 Emiri::VkRenderContext &Emiri::GetRC()

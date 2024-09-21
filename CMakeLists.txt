@@ -12,6 +12,7 @@ add_subdirectory("3rd/VulkanHeaders")
 add_subdirectory("3rd/json")
 add_subdirectory("3rd/freetype")
 add_subdirectory("3rd/glm")
+add_subdirectory("3rd/DirectXHeaders")
 
 option(USE_MIMALLOC "是否使用mimalloc管理内存" ON)
 
@@ -33,10 +34,16 @@ set(Emiri_Header
         "Core/logger/Logger.h"
         #Core_config
         "Core/config/Config.h"
-        #Vulkan
+        #Render
+        "Render/RenderContext.h"
+
         "Render/Vulkan/vk_common.h"
         "Render/Vulkan/helper.h"
         "Render/Vulkan/VkRenderContext.h"
+        "Render/Vulkan/VkSwapChain.h"
+
+        "Render/DirectX/dx_common.h"
+        "Render/DirectX/DxRenderContext.h"
 )
 
 if (WIN32)
@@ -60,8 +67,14 @@ set(Emiri_Source
         "Core/logger/ConsoleLog.cpp"
         #Core_config
         "Core/config/ConfigImplJson.cpp"
-        #Vulkan
+        #Render
+        "Render/RenderContext.cpp"
+
         "Render/Vulkan/VkRenderContext.cpp"
+        "Render/Vulkan/VkSwapChain.cpp"
+
+        "Render/DirectX/DxRenderContext.cpp"
+
 )
 
 #创建Emiri程序
@@ -73,6 +86,8 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         "Vulkan::Headers"
         "nlohmann_json"
         "freetype"
+        "glfw"
+        "Microsoft::DirectX-Headers"
 )
 
 if (${USE_MIMALLOC})

@@ -10,8 +10,8 @@ namespace Emiri
 {
     namespace vkx
     {
-        constexpr u32 vkx_version{ VK_MAKE_VERSION(0, 0, 1) };
-        constexpr auto vkx_name{ "vkx" };
+        constexpr u32 vkx_version{VK_MAKE_VERSION(0, 0, 1)};
+        constexpr auto vkx_name{"vkx"};
 #ifdef NDEBUG
         constexpr std::array<const char *, 2> vkx_extensions{};
         constexpr std::array<const char *, 2> vkx_layers{};
@@ -22,18 +22,18 @@ namespace Emiri
             VK_KHR_SURFACE_EXTENSION_NAME,
 #ifdef WIN32
             WINDOWS_SURFACE,
-#elif LINUX
-  //          LINUX_SURFACE,
 #else
-#   error "Unsupported platform"
+            LINUX_SURFACE,
 #endif
         };
         constexpr std::array<const char *, 1> vkx_layers{
-            "VK_LAYER_KHRONOS_validation"};
+            "VK_LAYER_KHRONOS_validation"
+        };
 
 #endif
         constexpr std::array<const char *, 1> vkx_device_extensions{
-            VK_KHR_SWAPCHAIN_EXTENSION_NAME};
+            VK_KHR_SWAPCHAIN_EXTENSION_NAME
+        };
 
         constexpr std::array<const char *, 0> vkx_device_layers{};
 
@@ -65,7 +65,7 @@ namespace Emiri
             VkApplicationInfo _app_info;
         };
 
-        template <u32 family_count>
+        template<u32 family_count>
         struct device_create_info : VkDeviceCreateInfo
         {
             void init_queue(u32 fam_index, u32 fam_id, float *priorites, u32 count)
@@ -111,7 +111,7 @@ namespace Emiri
                 report_info.pUserData = nullptr;
                 return &report_info;
             }
-            
+
             VkDebugUtilsMessengerCreateInfoEXT *as_utils(PFN_vkDebugUtilsMessengerCallbackEXT callback)
             {
                 utils_info.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
@@ -132,6 +132,30 @@ namespace Emiri
             };
         };
 
+        struct SwapchainCreateInfo : VkSwapchainCreateInfoKHR
+        {
+            VkSwapchainCreateInfoKHR* init()
+            {
+                this->sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+                this->pNext = nullptr;
+                this->flags = 0;
+                //VkSurfaceKHR                     surface;
+                //uint32_t                         minImageCount;
+                //VkFormat                         imageFormat;
+                //VkColorSpaceKHR                  imageColorSpace;
+                //VkExtent2D                       imageExtent;
+                //uint32_t                         imageArrayLayers;
+                //VkImageUsageFlags                imageUsage;
+                //VkSharingMode                    imageSharingMode;
+                //uint32_t                         queueFamilyIndexCount;
+                //const uint32_t*                  pQueueFamilyIndices;
+                //VkSurfaceTransformFlagBitsKHR    preTransform;
+                //VkCompositeAlphaFlagBitsKHR      compositeAlpha;
+                //VkPresentModeKHR                 presentMode;
+                //VkBool32                         clipped;
+                //VkSwapchainKHR                   oldSwapchain;
+                return this;
+            }
+        };
     } // namespace vkx
-
 } // namespace Emiri
