@@ -14,7 +14,6 @@ namespace Emiri
     public:
         virtual ~RenderContext() = default;
 
-    private:
         virtual bool Initialize() =0;
         virtual void Shutdown() =0;
     };

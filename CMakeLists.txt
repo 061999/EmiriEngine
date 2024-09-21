@@ -90,6 +90,10 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         "Microsoft::DirectX-Headers"
 )
 
+if(WIN32)
+    target_link_libraries(${CMAKE_PROJECT_NAME} "d3d12" "dxgi")
+endif()
+
 if (${USE_MIMALLOC})
     message("使用了mimalloc管理内存")
     target_link_libraries(${CMAKE_PROJECT_NAME} "mimalloc-static")
