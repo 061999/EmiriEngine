@@ -34,6 +34,9 @@ set(Emiri_Header
         "Core/logger/Logger.h"
         #Core_config
         "Core/config/Config.h"
+
+        "Server/ServerBase.h"
+
         #Render
         "Render/RenderContext.h"
 
@@ -41,15 +44,21 @@ set(Emiri_Header
         "Render/Vulkan/helper.h"
         "Render/Vulkan/VkRenderContext.h"
         "Render/Vulkan/VkSwapChain.h"
-
-        "Render/DirectX/dx_common.h"
-        "Render/DirectX/DxRenderContext.h"
 )
 
 if (WIN32)
-    set(Emiri_Plat_Source "Core/utl/async_windows.cpp")
+    set(Emiri_Plat_Source
+            "Core/utl/async_windows.cpp"
+            "Render/DirectX/dx_common.h"
+            "Render/DirectX/DxRenderContext.h"
+            "Render/DirectX/DxRenderContext.cpp"
+            "Server/ServerBaseWindows.cpp"
+    )
 else ()
-    set(Emiri_Plat_Source "Core/utl/async_linux.cpp")
+    set(Emiri_Plat_Source
+            "Core/utl/async_linux.cpp"
+            "Server/ServerBaseLinux.cpp"
+    )
 endif ()
 
 set(py_third_party_path "${CMAKE_CURRENT_LIST_DIR}/3rd")
@@ -73,8 +82,7 @@ set(Emiri_Source
         "Render/Vulkan/VkRenderContext.cpp"
         "Render/Vulkan/VkSwapChain.cpp"
 
-        "Render/DirectX/DxRenderContext.cpp"
-
+        "Server/ServerBase.cpp"
 )
 
 #创建Emiri程序

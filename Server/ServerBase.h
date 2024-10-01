@@ -36,12 +36,13 @@ namespace Emiri
 		virtual bool Initialize() = 0;
 		virtual void ShutDown() = 0;
 
-		void OneFrameDown();
+		static void OneFrameDown();
 
 		static bool InitAll();
 		static void ShutDownAll();
 		static void BeginUpdateServer();
-		static void EndUpdateServer();
+
+		static bool all_down;
 	private:
 		static ServerBasePrivate* s_priv;
 		std::mutex msg_lock;

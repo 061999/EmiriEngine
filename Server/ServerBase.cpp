@@ -6,6 +6,7 @@
 static struct
 {
 	std::array<Emiri::ServerBase*, Emiri::SERVER_TYPE_NUM> servers;
+	bool all_down;
 }global{};
 
 Emiri::ServerBase::ServerBase(Emiri::SERVER_TYPE st)
